@@ -191,6 +191,10 @@ const buildReportTable = function(config, dataTable, updateColumnOrder, element)
           }
         })
     var header_rows = table.append('thead')
+    .style('position', 'sticky')
+    .style('top', '0')
+    .style('background-color', 'white')
+    .style('z-index', '1')
       .selectAll('tr')
       .data(dataTable.getHeaderTiers()).enter()
 
@@ -320,7 +324,7 @@ const buildReportTable = function(config, dataTable, updateColumnOrder, element)
         // Looker applies padding based on the top of the viz when opening a drill field but 
         // if part of the viz container is hidden underneath the iframe, the drill menu opens off screen
         // We make a simple copy of the d3.event and account for pageYOffser as MouseEvent attributes are read only. 
-        if(d.links !== [] && d.links[0].url) {
+        if(d.links.length !== 0 && d.links[0].url) {
           let event = {
             metaKey: d3.event.metaKey,
             pageX: d3.event.pageX,
